@@ -1,0 +1,103 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/stylelogin.css' %}" rel="stylesheet">
+    <link href="{% static 'css/responsivelogin.css' %}" rel="stylesheet">
+    <title>Formify</title>
+</head>
+
+<body>
+    <div class="body_wrapper frm-vh-md-100">
+        <div class="header_top d-flex align-items-center justify-content-between">
+            <a href="index.html" class="logo"></a>
+            <p class="form_footer_text text-right">Already have an account? <a href="/">Sign in
+                </a>
+            </p>
+        </div>
+        <div class="formify_body formify_signup_fullwidth parallax-effect d-flex">
+            <div class="formify_left_fullwidth frm-vh-md-100" data-bg-img="{% static 'images/background-bg-left.jpg' %}">
+            </div>
+            <div class="formify_right_fullwidth d-flex align-items-center justify-content-center">
+                <div class="parallax_img">
+                    <div class="p_img one">
+                        <img class="layer layer2" data-depth="0.5" src="{% static 'images/polygon1.png' %}" alt="">
+                    </div>
+                    <div class="p_img two"><img class="layer layer2" data-depth="0.4" src="{% static 'images/polygon2.png' %}" alt="">
+                    </div>
+                    <div class="p_img three"><img class="layer layer2" data-depth="0.5" src="{% static 'images/polygon3.png' %}" alt="">
+                    </div>
+                    <div class="p_img four"><img class="layer layer2" data-depth="0.5" src="{% static 'images/polygon4.png' %}" alt="">
+                    </div>
+                    <div class="p_img five"><img class="layer layer2" data-depth="0.5" src="{% static 'images/polygon5.png' %}" alt="">
+                    </div>
+                    <div class="p_img six"><img class="layer layer2" data-depth="0.5" src="{% static 'images/polygon6.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="formify_content_body">
+                    <h2 class="form_title">Sign up</h2>
+                    <form action="/" class="signup_form signup_form_style_two">
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="uname" name="uname" aria-required="true">
+                            <label class="top_text">User Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="email" name="email" placeholder="" required=""
+                                aria-required="true">
+                            <label class="top_text">Email address</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="inputPassword" name="password" required="">
+                            <label class="top_text">Password
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="inputPassword" name="cpassword" required="">
+                            <label class="top_text">Confirm Password
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="fname" name="fname" aria-required="true">
+                            <label class="top_text">First Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="lname" name="lname" aria-required="true">
+                            <label class="top_text">Last Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="mname" name="mname" aria-required="true">
+                            <label class="top_text">Middle Name</label>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" id="address" name="address" aria-required="true">
+                            <label class="top_text">Address</label>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 20px;">
+                            <button type="submit" class="btn thm_btn thm_btn_green">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- <script src="js/parallax.js"></script> -->
+    <!-- <script src="js/jquery.parallax-scroll.js"></script> -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
