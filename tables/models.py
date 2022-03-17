@@ -30,7 +30,7 @@ class Profile(models.Model):
 
     gender = models.CharField(max_length=1, choices=gen)
     branch = models.CharField(max_length=3, choices=brch)
-    semester = models.IntegerChoices('Place', 'First Second Third Fourth Fifth Sixth Seventh Eighth')
+    semester = models.IntegerField(default='1')
     profile_pic = models.ImageField(upload_to = 'images/')
     address = models.TextField(default="Address not given")
     
