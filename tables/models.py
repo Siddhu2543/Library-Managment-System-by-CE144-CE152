@@ -28,9 +28,20 @@ class Profile(models.Model):
         ('FOP', 'FOP')
     )
 
+    sem = (
+        (1, 1),
+        (2, 2),
+        (3, 3),
+        (4, 4),
+        (5, 5),
+        (6, 6),
+        (7, 7),
+        (8, 8)
+    )
+
     gender = models.CharField(max_length=1, choices=gen)
     branch = models.CharField(max_length=3, choices=brch)
-    semester = models.IntegerField(default='1')
+    semester = models.IntegerField(choices=sem)
     profile_pic = models.ImageField(upload_to = 'images/')
     address = models.TextField(default="Address not given")
     

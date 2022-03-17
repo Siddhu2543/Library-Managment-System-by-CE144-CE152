@@ -1,0 +1,26 @@
+// this is names of pages only
+// which we have to create
+
+-> User  ->Notification page - x
+	 ->View account details - x ->Update account
+				    ->Remove account
+				    ->It will contain account details such as username, university details, outstanding 								  books, due amount to be paid
+	 ->Search book - @home page
+	 ->@View book details(Single page)    ->Issue book(button)
+	   		 		      ->Renew book(button)
+		 		 	      ->Reserve book(button)
+
+-> Our books (All books by category) - done
+
+-> Admin ->View account details (Admin's personal)
+	 ->View customer details	->Update customer
+	 				->Remove user
+	 ->Search user
+	 ->Search book - @home page
+	 ->Add book - like registration
+	 ->View book ->Remove book				-|This will be included in
+	 	     ->Update book details			-|View book only
+         ->View pending requests
+->Login - done
+->Register user - done
+->Forgot password -
