@@ -54,7 +54,7 @@
                         </div>
                     {% endfor %}
 
-                    <form action="register" class="signup_form signup_form_style_two" method="POST">
+                    <form action="register" class="signup_form signup_form_style_two" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
                             <input class="form-control" type="text" id="uname" name="uname" aria-required="true">
@@ -91,9 +91,8 @@
 
                         <div class="form-group">
                             <select name="gen" class="form-control" id="gen">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
+                                <option value="m">Male</option>
+                                <option value="f">Female</option>
                             </select>
                             <label class="top_text" style="z-index:5">Gender</label>
                             {% comment %} <label class="top_text">Gender</label> {% endcomment %}

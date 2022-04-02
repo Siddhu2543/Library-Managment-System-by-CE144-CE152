@@ -72,9 +72,9 @@ class Transaction(models.Model):
     issue_date = models.DateField(auto_now_add=True)
     due_date = models.DateField(default= one_month)
     status = (
-        ('iss', 'issued'),
-        ('ret', 'returned'),
-        ('ren', 'renewed'),
+        ('issued', 'issued'),
+        ('returned', 'returned'),
+        ('renewed', 'renewed'),
     )
     current_status = models.CharField(max_length=8, choices=status)
 

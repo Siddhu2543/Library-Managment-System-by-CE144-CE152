@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+import imp
 import uuid
 from django.shortcuts import render,redirect
 from django.http import HttpResponseRedirect
@@ -10,6 +11,7 @@ from tables.models import Profile
 
 from django.conf import settings
 from django.core.mail import send_mail
+import django.core.files.uploadedfile
 import datetime
 
 # Create your views here.
@@ -43,7 +45,7 @@ def register(request):
         semester = request.POST['semester']
         address = request.POST['address']
         dob = request.POST['dob']
-        pic = request.POST['pic']
+        pic = request.FILES.get('pic')
         if( password == cpassword ):
             
             if(User.objects.filter(username=uname).exists()):

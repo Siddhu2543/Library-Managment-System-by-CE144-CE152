@@ -83,7 +83,10 @@ DATABASES = {
         'NAME': "libraryProject",
         'USER':'root',
         'PASSWORD':'',
-        'HOST':'localhost'
+        'HOST':'localhost',
+        'OPTIONS': {
+            'sql_mode': 'STRICT_TRANS_TABLES',
+        }
     }
 }
 
