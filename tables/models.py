@@ -1,10 +1,13 @@
+import imp
 from operator import mod
+import os
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
+from django.utils.timezone import now
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -28,21 +31,10 @@ class Profile(models.Model):
         ('FOP', 'FOP')
     )
 
-    sem = (
-        (1, 1),
-        (2, 2),
-        (3, 3),
-        (4, 4),
-        (5, 5),
-        (6, 6),
-        (7, 7),
-        (8, 8)
-    )
-
     gender = models.CharField(max_length=1, choices=gen)
     branch = models.CharField(max_length=3, choices=brch)
-    semester = models.IntegerField(choices=sem)
-    profile_pic = models.ImageField(upload_to = 'images/')
+    semester = models.IntegerField(default='1')
+    profile_pic = models.ImageField(upload_to = 'images')
     address = models.TextField(default="Address not given")
     
 # @receiver(post_save, sender=User)
@@ -57,11 +49,24 @@ class Profile(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=50)
-    description = models.TextField()
+    description = models.TextField(default="Nothing")
     author = models.CharField(max_length=20)
     publishers = models.CharField(max_length=50)
     available_qty = models.IntegerField(default=1)
-    book_pic = models.ImageField(upload_to = 'images/')
+    
+    cat = (
+        ('Technology','Technology'),
+        ('Mathematics','Mathematics'),
+        ('Language','Language'),
+        ('Business Management','Business Management'),
+        ('Physics','Physics'),
+        ('Chemistry','Chemistry'),
+        ('Robotics','Robotics'),
+        ('Space and Astronomy','Space and Astronomy')
+    )
+    add_date = models.DateField(auto_now_add=True)
+    category = models.CharField(max_length=25, choices=cat,default="Technology")
+    book_pic = models.ImageField(upload_to = 'images')
 
 def one_month():
     return datetime.today() + timedelta(days=30)
@@ -95,3 +100,16 @@ class Request(models.Model):
     book_id = models.ForeignKey(to=Book, on_delete=models.CASCADE)
     description = models.TextField()
 
+    admin_stat = (
+        (-1, -1),
+        (0, 0),
+        (1, 1),
+    )
+
+    user_stat = (
+        (0, 0),
+        (1, 1),
+    )
+
+    admin_status = models.IntegerField(choices=admin_stat, default=0)
+    user_status = models.IntegerField(choices=user_stat, default=0)

@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'css/userProfileUpdate.css' %}" rel="stylesheet">
+    <title>Add Book</title>
+</head>
+<body>
+    
+    <div class="padding container-fluid d-flex justify-content-center">
+        
+        <div class="col-md-8">
+            {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            <div class="free-quote bg-dark h-100">
+                <h2 class="my-4 heading text-center">Update Profile</h2>
+
+                <form method="POST" action="add-book" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group"> 
+                        <label for="title">Book Title</label> 
+                        <input type="text" class="form-control btn-block" id="title" name="title" required> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="author">Author</label> 
+                        <input type="text" class="form-control btn-block" id="author" name="author" required> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="desc">Description</label> 
+                        <input type="text" class="form-control btn-block" id="desc" name="desc" required> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="publishers">Publishers</label> 
+                        <input type="text" class="form-control btn-block" id="publishers" name="publishers" required> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="availableQty">Available Quantity</label> 
+                        <input type="number" class="form-control btn-block" id="availableQty" name="availableQty" required> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="category">Category</label> 
+                        <select name="category" id="category" class="form-control" id="gen">
+                                <option value="Technology" selected>Technology</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Language">Language</option>
+                                <option value="Business Management">Business Management</option>
+                                <option value="Physics">Physics</option>
+                                <option value="Chemistry">Chemistry</option>
+                                <option value="Robotics">Robotics</option>
+                                <option value="Space and Astronomy">Space and Astronomy</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="pic">Book Cover Picture</label> 
+                        <input type="file" class="form-control btn-block" id="pic" name="pic" required> 
+                    </div>
+                    <center>
+                    <div class="form-group"> 
+                        <input type="submit" class="btn btn-primary text-white py-2 px-4 btn-block" value="Add Book"> 
+                    </div></center>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

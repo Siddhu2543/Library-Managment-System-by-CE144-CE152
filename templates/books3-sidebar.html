@@ -31,6 +31,17 @@
 <!-- Component -->
 <link href="{% static 'js/dl-menu/component.css' %}" rel="stylesheet">
 
+<style>
+    .insub{
+        background-color:white!important;
+        font-weight:200!important;
+        color:black!important;
+    }
+    .insub:hover{
+        background-color:#fc9c2f!important;
+    }
+</style>
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -63,7 +74,7 @@
                     <div class="col-md-9">
                     	<div class="top-strip">
                             <div class="pull-left">
-                                <p>Welcome to Library theme</p>
+                                <p>Welcome to DDU Library {{user.username}}</p>
                             </div>
                             <div class="social-icon">
                                 <a href="mailto:info@library-theme.com" class="pull-left">info@library-theme.com</a>
@@ -78,10 +89,12 @@
                         </div>
                     	<div class="kode-navigation">
 						   <ul>
-                                <li><a href="">Home</a></li>
+                                <li><a href="index">Home</a></li>
                                 <li><a href="aboutus">About Us</a></li>
-                                <li><a href="books3sidebar">Our Books</a></li>
+                                <li><a href="../books3sidebar">Our Books</a></li>
                                 <li class="last"><a href="contactus">Contact Us</a></li>
+                                <li class="last"><a href="myprofile">My Profile</a></li>
+                                <li class="last"><a href="notification">Notification</a></li>
                                 <li class="last"><a href="logout">Logout</a></li>
 							</ul>
 						</div>
@@ -89,9 +102,11 @@
 							<button class="dl-trigger">Open Menu</button>
 							<ul class="dl-menu">
 								<li><a href="index">Home</a></li>
-								<li><a href="aboutus">About Us</a></li>
-								<li><a href="books3sidebar">Our Books</a></li>
-								<li class="last"><a href="contactus">Contact Us</a></li>
+                                <li><a href="aboutus">About Us</a></li>
+                                <li><a href="../books3sidebar">Our Books</a></li>
+                                <li class="last"><a href="contactus">Contact Us</a></li>
+                                <li class="last"><a href="myprofile">My Profile</a></li>
+                                <li class="last"><a href="notification">Notification</a></li>
                                 <li class="last"><a href="logout">Logout</a></li>
 							</ul>
 						</div>
@@ -196,201 +211,62 @@
                     <div class="widget widget-categories">
                     	<h2>Categories</h2>
                         <ul>
-                        	<li><a href="#">Photoshop</a></li>
-                            <li><a href="#">web/Graphic Design</a></li>
-                            <li><a href="#">Mobile Development</a></li>
-                            <li><a href="#">Video Editing</a></li>
-                            <li><a href="#">Photoshop</a></li>
-                            <li><a href="#">web/Graphic Design</a></li>
-                            <li><a href="#">Mobile Development</a></li>
-                            <li><a href="#">Video Editing</a></li>
+                            <li id="TechnologyLink">
+                                <a href="{% url 'books3sidebar1' cat="Technology" %}">Technology</a>
+                            </li>
+                            <li id="MathematicsLink">
+                                <a href="{% url 'books3sidebar1' cat="Mathematics" %}">Mathematics</a>
+                            </li>
+                            <li id="LanguageLink">
+                                <a href="{% url 'books3sidebar1' cat="Language" %}">Language</a>
+                            </li>
+                            <li id="BusinessManagementLink">
+                                <a href="{% url 'books3sidebar1' cat="Business Management" %}">Business Management</a>
+                            </li>
+                            <li id="PhysicsLink">
+                                <a href="{% url 'books3sidebar1' cat="Physics" %}">Physics</a>
+                            </li>
+                            <li id="ChemistryLink">
+                                <a href="{% url 'books3sidebar1' cat="Chemistry" %}">Chemistry</a>
+                            </li>
+                            <li id="RoboticsLink">
+                                <a href="{% url 'books3sidebar1' cat="Robotics" %}">Robotics</a>
+                            </li>
+                            <li id="SpaceandAstronomyLink">
+                                <a href="{% url 'books3sidebar1' cat="Space and Astronomy" %}">Space and Astronomy</a>
+                            </li>
                         </ul>
                     </div>
                     <!--CATEGORY WIDGET END-->
                    
                 </div>
-            	<div class="col-md-9">
+
+
+            	<div class="col-md-9" id="Technology">
+                    {% comment %} <center><h2 style="margin-top: 50px;">Technology</h2></center> {% endcomment %}
                 	<div class="row">
                     	<!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                        {% for book in AllBooks %}
+                            {% if book %}
+
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="books-listing-4">
+                                        <div class="kode-thumb">
+                                            <a href="{% url 'bookDetails' bookid=book.id %}"><img src="{{book.book_pic.url}}" style="height:300px;object-fit:cover"></a>
+                                        </div>
+                                        <div class="kode-text" style="height:50px!important;overflow:auto!important">
+                                            <h3><a href="#">{{book.title}}</a></h3>
+                                            {% comment %} <p>{{book.description}}</p> {% endcomment %}
+                                        </div>
+                                        <a href="{% url 'bookDetails' bookid=book.id %}" class="add-to-cart">See Details</a>
                                     </div>
                                 </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
+
+                            {% endif %}
+                        {% endfor %}
+                        
                         <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book2.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book3.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book4.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book5.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book6.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book7.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book8.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
-                        <!--BOOK LISTING START-->
-                        <div class="col-md-4 col-sm-6">
-                            <div class="books-listing-4">
-                                <div class="kode-thumb">
-                                    <a href="#"><img src="{% static 'images/book9.png' %}" alt=""></a>
-                                </div>
-                                <div class="kode-text">
-                                    <h3><a href="#">Basic Time Management Course</a></h3>
-                                    <p>Sed ut perspiciatis</p>
-                                </div>
-                                <div class="book-price">
-                                    <p>$24.75</p>
-                                    <div class="rating">
-                                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="add-to-cart">Add to cart</a>
-                            </div>
-                        </div>
-                        <!--BOOK LISTING END-->
+                        
                         <nav>
                           <ul class="pagination">
                             <li>
@@ -412,6 +288,7 @@
                         </nav>
                     </div>
                 </div>
+                
             </div>
             
         </div>
@@ -439,6 +316,94 @@
         </div>
     </footer>
 </div>
+
+{% comment %} <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+
+<script>
+    $("#TechnologyLink").click(function(){
+        $("#Technology").show();
+        $("#Mathematics").hide();      
+        $("#Language").hide();    
+        $("#BusinessManagement").hide();    
+        $("#Physics").hide();    
+        $("#Chemistry").hide();    
+        $("#Robotics").hide();    
+        $("#SpaceandAstronomy").hide();
+    });
+    $("#MathematicsLink").click(function(){
+        $("#Technology").hide();
+        $("#Mathematics").show();      
+        $("#Language").hide();    
+        $("#BusinessManagement").hide();    
+        $("#Physics").hide();    
+        $("#Chemistry").hide();    
+        $("#Robotics").hide();    
+        $("#SpaceandAstronomy").hide();
+    });
+    $("#LanguageLink").click(function(){
+        $("#Technology").hide();
+        $("#Mathematics").hide();      
+        $("#Language").show();    
+        $("#BusinessManagement").hide();    
+        $("#Physics").hide();    
+        $("#Chemistry").hide();    
+        $("#Robotics").hide();    
+        $("#SpaceandAstronomy").hide();
+    });
+    $("#BusinessManagementLink").click(function(){
+        $("#Technology").hide();
+        $("#Mathematics").hide();      
+        $("#Language").hide();    
+        $("#BusinessManagement").show();
+        $("#Physics").hide();    
+        $("#Chemistry").hide();    
+        $("#Robotics").hide();    
+        $("#SpaceandAstronomy").hide();
+    });
+    $("#PhysicsLink").click(function(){
+        $("#Technology").hide();
+        $("#Mathematics").hide();      
+        $("#Language").hide();    
+        $("#BusinessManagement").hide();    
+        $("#Physics").show();    
+        $("#Chemistry").hide();    
+        $("#Robotics").hide();    
+        $("#SpaceandAstronomy").hide();
+    });
+    $("#ChemistryLink").click(function(){
+        $("#Technology").hide();
+        $("#Mathematics").hide();      
+        $("#Language").hide();    
+        $("#BusinessManagement").hide();    
+        $("#Physics").hide();    
+        $("#Chemistry").show();    
+        $("#Robotics").hide();    
+        $("#SpaceandAstronomy").hide();
+    });
+    $("#RoboticsLink").click(function(){
+        $("#Technology").hide();
+        $("#Mathematics").hide();      
+        $("#Language").hide();    
+        $("#BusinessManagement").hide();    
+        $("#Physics").hide();    
+        $("#Chemistry").hide();    
+        $("#Robotics").show();    
+        $("#SpaceandAstronomy").hide();
+    });
+    $("#SpaceandAstronomyLink").click(function(){
+        $("#Technology").hide();
+        $("#Mathematics").hide();      
+        $("#Language").hide();    
+        $("#BusinessManagement").hide();    
+        $("#Physics").hide();    
+        $("#Chemistry").hide();    
+        $("#Robotics").hide();    
+        $("#SpaceandAstronomy").show();
+    });
+    
+</script> {% endcomment %}
+
 <!--WRAPPER END-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{% static 'js/jquery.min.js' %}"></script>

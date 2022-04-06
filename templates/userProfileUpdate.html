@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="{% static 'css/userProfileUpdate.css' %}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="padding container-fluid d-flex justify-content-center">
+        
+        <div class="col-md-8">
+            {% for message in messages %}
+                    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            <div class="free-quote bg-dark h-100">
+                <h2 class="my-4 heading text-center">Update Profile</h2>
+
+                <form method="POST" action="update">
+                    {% csrf_token %}
+                    <div class="form-group"> 
+                        <label for="uname">Name</label> 
+                        <input type="text" class="form-control btn-block" id="uname" name="uname" required value="{{user.username}}"> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="email">Email</label> 
+                        <input type="text" class="form-control btn-block" id="email" name="email" required value="{{user.email}}"> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="fname">First Name</label> 
+                        <input type="text" class="form-control btn-block" id="fname" name="fname" required value="{{user.first_name}}"> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="lname">Last Name</label> 
+                        <input type="text" class="form-control btn-block" id="lname" name="lname" required value="{{user.last_name}}"> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="mobile">Mobile</label> 
+                        <input type="text" class="form-control btn-block" id="mobile" name="mobile" required value="{{user.profile.mobile}}"> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="gen">Gender</label> 
+                        <select name="gen" class="form-control" id="gen">
+                            {% if user.profile.gender == "m" %}
+                                <option value="m" selected>Male</option>
+                                <option value="f">Female</option>
+                                {% comment %} <option value="Other">Other</option> {% endcomment %}
+                            {% endif %}
+                            {% if user.profile.gender == "f" %}
+                                <option value="m">Male</option>
+                                <option value="f" selected>Female</option>
+                                {% comment %} <option value="Other">Other</option> {% endcomment %}
+                            {% endif %}
+                        </select>
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="branch">Branch</label> 
+                        <select name="branch" class="form-control" id="branch">
+                            {% if user.profile.branch == "CE" %}
+                                <option value="CE" selected>CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "IT" %}
+                                <option value="CE">CE</option>
+                                <option value="IT" selected>IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "MH" %}
+                                <option value="CE">CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH" selected>MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "CL" %}
+                                <option value="CE">CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL" selected>CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "CH" %}
+                                <option value="CE">CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH" selected>CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "IC" %}
+                                <option value="CE">CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC" selected>IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "EC" %}
+                                <option value="CE">CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC" selected>EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "FOD" %}
+                                <option value="CE">CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD" selected>FOD</option>
+                                <option value="FOP">FOP</option>
+                            {% endif %}
+                            {% if user.profile.branch == "FOP" %}
+                                <option value="CE">CE</option>
+                                <option value="IT">IT</option>
+                                <option value="MH">MH</option>
+                                <option value="CL">CL</option>
+                                <option value="CH">CH</option>
+                                <option value="IC">IC</option>
+                                <option value="EC">EC</option>
+                                <option value="FOD">FOD</option>
+                                <option value="FOP" selected>FOP</option>
+                            {% endif %}
+                            
+                        </select>
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="semester">Semester</label> 
+                        <input type="number" class="form-control btn-block" id="semester" name="semester" min="1" max="8" required value="{{user.profile.semester}}"> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="address">Address</label> 
+                        <input type="text" class="form-control btn-block" id="address" name="address" required value="{{user.profile.address}}"> 
+                    </div>
+                    <div class="form-group mb-4"> 
+                        <label for="dob">D.O.B</label> 
+                        <input type="date" class="form-control btn-block" id="dob" name="dob" required value="{{user.profile.dob|date:"Y-m-d"}}"> 
+                    </div>
+                    {% comment %} <div class="form-group mb-4"> 
+                        <label for="pic">Profile Picture</label> 
+                        <input type="file" class="form-control btn-block" id="pic" name="pic" required value="{{user.profile.profile_pic.url}}"> 
+                    </div> {% endcomment %}
+                    <center>
+                    <div class="form-group"> 
+                        <input type="submit" class="btn btn-primary text-white py-2 px-4 btn-block" value="Update"> 
+                    </div></center>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

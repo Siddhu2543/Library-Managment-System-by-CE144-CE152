@@ -385,7 +385,7 @@ button:focus {
 
 .signup_form_style_two .form-group .form-control:focus, .signup_form_style_two .form-group .form-control.animated {
   /* border-color: #039f67; */
-  border-color: #ffa011;
+  border-color: #fc9c2f;
   box-shadow: none;
 }
 
@@ -398,12 +398,12 @@ button:focus {
 .signup_form_style_two .form-group .thm_btn_green {
   display: inline-block;
   width: auto;
-  background: #ffa011;
+  /* background: #039f67; */
+  background: #fc9c2f;
 }
 
 .signup_form_style_two .form-group .thm_btn_green:hover {
-  /* box-shadow: 0 4px 11px rgba(3, 159, 103, 0.35); */
-  box-shadow: 0 4px 11px rgba(255, 136, 1, 0.35);
+  box-shadow: 0 4px 11px #fc9c2f70;
 }
 
 /*========== formify_box_register css ========*/
@@ -1192,7 +1192,7 @@ button:focus {
 
 .header_top .form_footer_text a {
   /* color: #039f67; */
-  color: #ffa011!important;
+  color: #fc9c2f!important;
 }
 
 /*============== formify_box_three  css ============*/

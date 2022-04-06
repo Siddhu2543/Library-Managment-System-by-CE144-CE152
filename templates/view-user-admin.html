@@ -1,0 +1,348 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>Book Library - Book Guide Author, Publication and Store</title>
+<!-- CUSTOM STYLE -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+<!-- THEME TYPO -->
+<link href="{% static 'css/themetypo.css' %}" rel="stylesheet">
+<!-- BOOTSTRAP -->
+<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+<!-- COLOR FILE -->
+<link href="{% static 'css/color.css' %}" rel="stylesheet">
+<!-- FONT AWESOME -->
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+<!-- BX SLIDER -->
+<link href="{% static 'css/jquery.bxslider.css' %}" rel="stylesheet">
+<!-- Boostrap Slider -->
+<link href="{% static 'css/bootstrap-slider.css' %}" rel="stylesheet">
+<!-- Widgets -->
+<link href="{% static 'css/widget.css' %}" rel="stylesheet">
+<!-- Owl Carusel -->
+<link href="{% static 'css/owl.carousel.css' %}" rel="stylesheet">
+<!-- responsive -->
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+<!-- Component -->
+<link href="{% static 'js/dl-menu/component.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/userProfile.css' %}">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="loader-wrapper">
+	<div id="loader"></div>
+
+	<div class="loader-section section-left"></div>
+	<div class="loader-section section-right"></div>
+
+</div>
+<!--WRAPPER START-->
+<div class="wrapper kode-header-class-3">
+	<!--HEADER START-->
+	<header class="header-3">
+    	<div class="container">
+            <div class="logo-container">
+            	<div class="row">
+                	<div class="col-md-3">
+                    	 <!--LOGO START-->
+                        <div class="logo">
+                            <a href="#"><img src="{% static 'images/logo-2.png' %}" alt=""></a>
+                        </div>
+                        <!--LOGO END-->
+                    </div>
+                    <div class="col-md-9">
+                    	<div class="top-strip">
+                            <div class="pull-left">
+                              <p>Welcome to DDU Library {{user.username}}</p>
+                            </div>
+                            <div class="social-icon">
+                                <a href="mailto:info@library-theme.com" class="pull-left">info@library-theme.com</a>
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>                      
+                                </ul>
+                            </div>
+                        </div>
+                    	<div class="kode-navigation">
+						   	<ul>
+								<li><a href="index">Home</a></li>
+                                <li><a href="aboutus">About Us</a></li>
+                                <li><a href="books3sidebar">Our Books</a></li>
+                                <li class="last"><a href="contactus">Contact Us</a></li>
+                                <li class="last"><a href="myprofile">My Profile</a></li>
+                                <li class="last"><a href="notification">Notification</a></li>
+                                <li class="last"><a href="logout">Logout</a></li>	
+							</ul>
+						</div>
+						<div id="kode-responsive-navigation" class="dl-menuwrapper">
+							<button class="dl-trigger">Open Menu</button>
+							<ul class="dl-menu">
+								<li><a href="index">Home</a></li>
+                                <li><a href="aboutus">About Us</a></li>
+                                <li><a href="books3sidebar">Our Books</a></li>
+                                <li class="last"><a href="contactus">Contact Us</a></li>
+                                <li class="last"><a href="myprofile">My Profile</a></li>
+                                <li class="last"><a href="notification">Notification</a></li>
+                                <li class="last"><a href="logout">Logout</a></li>
+							</ul>
+						</div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </header>
+    <!--HEADER END-->
+    <!--BANNER START-->
+    <div class="kode-inner-banner">
+    	<div class="kode-page-heading">
+        	<h2>My Profile</h2>
+        </div>
+    </div>
+    <!--BANNER END-->
+    
+    <!--CONTENT START-->
+    
+    
+
+    <div class="container mt-5">
+      {% for u in mainuserdetails %}
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card piccard">
+                        <div class="card-body">
+                          
+                            <div class="d-flex flex-column align-items-center text-center">
+                                  {% csrf_token %}
+                              <img src="{{u.profile.profile_pic.url}}" class="rounded-circle" width="150" alt="user">
+
+                                <div class="mt-3">
+                                    <h4>{{u.username}}</h4>
+                                    <p class="text-secondary mb-1">Student of {{u.profile.branch}}</p>
+                                    <p class="text-muted font-size-sm">Dharmsinh Desai University</p>
+                                    <center><div>                                      
+                                    </div></center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h6 class="mb-0">Currently issued book</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                    {{issue_cnt.id__count}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h6 class="mb-0">Currently reserved book</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {{reservation_cnt.id__count}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <h6 class="mb-0">Current Penlty</h6>
+                                </div>
+                                <div class="col-sm-3 text-secondary">
+                                  {% if penalty_sum.penalty__sum != None %} 
+                                    {{penalty_sum.penalty__sum}}
+                                  {% else %}  
+                                    0
+                                  {% endif %}
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0">User Name</h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                {{u.username}}
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                {{u.email}}
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">First Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{u.first_name}}
+                                </div>
+                              </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Last Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{u.last_name}}
+                                </div>
+                              </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0">Mobile No.</h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                {{u.profile.mobile}}
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Gender</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{u.profile.gender}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Branch</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{u.profile.branch}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                  <h6 class="mb-0">Semester</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                  {{u.profile.semester}}
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0">Address</h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                {{u.profile.address}}
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <h6 class="mb-0">Date Of Birth</h6>
+                              </div>
+                              <div class="col-sm-9 text-secondary">
+                                {{u.profile.dob}}
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="container">
+      <center><h2 id="issuedBookHeading">Currently Issued Book Details</h2></center>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Remove</th>
+            <th scope="col">Book ID</th>
+            <th scope="col">Issue Date</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Penalty</th>
+            <th scope="col">Payment Done?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for t in maintranx %}
+          <tr>
+            <th scope="row"><a href="/adminpanel/remove-os-book/{{t.id}}"<i class="fa fa-close"></i></a></th>
+            <td>{{t.book_id.title}}</td>
+            <td>{{t.issue_date}}</td>
+            <td>{{t.due_date}}</td>
+            {% for p in mainpenalties %}
+              {% if p.book_id == t.book_id %}
+              <td>{{p.penalty}}</td>
+              <th scope="row"><a href="/adminpanel/update-user/{{t.user_id}}/{{t.book_id}}"<i class="fa fa-close"></i></a></th>
+              {% endif %}
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+	
+    <!--CONTENT END-->
+    <footer class="footer-2">
+        <div class="container">
+            <div class="lib-copyrights">
+                <p>Copyrights © 2015-16 KodeForest. All rights reserved</p>
+                <div class="social-icon">
+                    <ul>
+                        <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" data-toggle="tooltip" title="Tumblr"><i class="fa fa-tumblr"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="back-to-top">
+                <a href="#home"><i class="fa fa-angle-up"></i></a>
+            </div>
+        </div>
+    </footer>
+</div>
+<!--WRAPPER END-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.bxslider.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-slider.js' %}"></script>
+<script src="{% static 'js/waypoints.min.js' %}"></script> 
+<script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="{% static 'js/dl-menu/modernizr.custom.js' %}"></script>
+<script src="{% static 'js/dl-menu/jquery.dlmenu.js' %}"></script>
+<script src="{% static 'js/functions.js' %}"></script>
+</body>
+</html>

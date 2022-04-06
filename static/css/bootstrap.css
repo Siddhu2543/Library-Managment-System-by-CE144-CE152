@@ -86,6 +86,13 @@ sub {
 img {
   border: 0;
 }
+.card-body img {
+  border: 0;
+  width:200px;
+  height:200px;
+  object-fit: cover!important;
+  border-radius: 150px!important;
+}
 svg:not(:root) {
   overflow: hidden;
 }
